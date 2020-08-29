@@ -1,11 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title></title>
-</head>
-<body>
-this is a fucking index
-</body>
-</html>
+{% extends '../_template.html' %}
+
+{% block title %}
+Home
+{% endblock title %}
+
+{% block style %}
+<style>
+  .navbar{
+    background-color:rgb(255,23,23);
+  }
+</style>
+{% endblock style %}
+
+{% block body %}
+<nav class="navbar">
+  <a class="navbar-brand" href="#">
+    <!--<img src="/static/media/logo.png" width="80" height="80" class="d-inline-block align-top" alt="" loading="lazy">-->
+    LinGor
+  </a>
+</nav>
+{% endblock body %}
+
