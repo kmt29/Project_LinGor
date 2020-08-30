@@ -1,22 +1,55 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{% block title %}{% endblock title %}</title>
-<link rel="stylesheet" href="/static/css/bootstrap.css">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}{% endblock title %}</title>
+        <link rel="stylesheet" href="/static/css/bootstrap.css">
+        <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Monoton&family=Montserrat:wght@600&display=swap" rel="stylesheet">
+        <style>
+                .navbar-brand{
+                    color:black;
+                }
+                .navbar-brand:hover{
+                    color:rgb(13,13,13);
+                }
+                .navbar-nav{
+                    font-family: 'Montserrat', sans-serif;
+                }
+                .nav-link{
+                    padding-left:5%;
+                    padding-right:5%;
+                }
+                .container{
+                    max-width:80%;
+                }
+            {% block style %}
+            {% endblock style %} 
+        </style>
 
-{% block style %}
-{% endblock style %} 
+    </head>
+    <body>
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="/" style="font-family: 'Monoton', cursive;font-size:35px;">LinGor</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link "href="/">Home</a>
+                <a class="nav-link" href="/shop">Shop</a>
+                <a class="nav-link" href="/about">About</a>
+            </div>
+            </div>
+        </nav>  
+        <script src="/static/js/jquery.js"></script>
+        <script src="/static/js/popper.js"></script>
+        <script src="/static/js/bootstrap.js"></script>
+            {% block body %}
+            {% endblock body %}
+            </div>
 
-</head>
-<body>
 
-{% block body %}
-{% endblock body %}
-
-<script src="/static/js/jquery.js"></script>
-<script src="/static/js/popper.js"></script>
-<script src="/static/js/bootstrap.js"></script>
-</body>
+    </body>
 </html>
