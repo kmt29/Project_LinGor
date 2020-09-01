@@ -32,9 +32,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    #not so default installations
-    'shop.apps.ShopConfig',
-    'index.apps.IndexConfig',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -43,7 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-
+    #not so default installations
+    'crispy_forms',
+    'shop.apps.ShopConfig',
+    'index.apps.IndexConfig',
 ]
 
 MIDDLEWARE = [
@@ -136,3 +136,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'assets'),
 ]
+
+
+CRISPY_TEMPALTE_PACK="bootratp4"

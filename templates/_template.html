@@ -43,13 +43,15 @@
             </div>
             </div>
         </nav>  
+            {% block body %}
+            {% endblock body %}
         <script src="/static/js/jquery.js"></script>
         <script src="/static/js/popper.js"></script>
         <script src="/static/js/bootstrap.js"></script>
-            {% block body %}
-            {% endblock body %}
+
             </div>
 
-
+        {% block scripts %}
+        {% endblock scripts %}
     </body>
 </html>
