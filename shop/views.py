@@ -14,8 +14,8 @@ def register(request):
             User = form.save()
             return redirect('/')
         else:
-            return redirect('/shop/register')
+            return redirect('/shop/login')
     else:
         form = RegisterForm()
         
-    return render(request, "shop/signup.html", {'form':form})
+    return render(request, "shop/signup.html", {'form':form})   

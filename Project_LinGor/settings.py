@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'shop.apps.ShopConfig',
     'index.apps.IndexConfig',
-]
+]   
 
 MIDDLEWARE = [
     
@@ -139,3 +139,6 @@ STATICFILES_DIRS = [
 
 
 CRISPY_TEMPALTE_PACK="bootratp4"
+
+LOGIN_REDIRECT_URL = '/shop'
+LOGOUT_REDIRECT_URL = '/'

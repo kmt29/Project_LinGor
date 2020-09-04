@@ -23,6 +23,10 @@
                 .container{
                     max-width:80%;
                 }
+                .nav-item{
+                    float:right;
+                }
+
             {% block style %}
             {% endblock style %} 
         </style>
@@ -41,6 +45,30 @@
                 <a class="nav-link" href="/shop">Shop</a>
                 <a class="nav-link" href="/about">About</a>
             </div>
+            </div>
+            <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+                <ul class="navbar-nav ml-auto">
+                    {% if user.is_authenticated %}
+                        <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Hi ! {{user}}
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="shop/profile">Profile</a>
+                                <a class="dropdown-item" href="#">Cart</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="shop/logout">Logout</a>
+                                </div>
+                            </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/shop/login">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/shop/register">Register</a>
+                        </li>
+                    {% endif %}
+                </ul>
             </div>
         </nav>  
             {% block body %}
