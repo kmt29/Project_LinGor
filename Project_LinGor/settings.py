@@ -137,6 +137,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'assets'),
 ]
 
+MEDIA_ROOT = os.path.join(BASE_DIR,'assets/images')
+
 
 CRISPY_TEMPALTE_PACK="bootratp4"
 
