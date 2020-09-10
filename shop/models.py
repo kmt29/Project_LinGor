@@ -13,13 +13,27 @@ class Customer(models.Model):
 
 
 class Item(models.Model):
+    ITEM_TYPE = [
+        ('PH','Phone'),
+        ('TB','Tablet'),
+        ('LT','Laptop')
+    ]
     name =models.CharField(max_length=200,null=True)
     price = models.FloatField()
     description = models.CharField(max_length=1200)
     thumbnail = models.ImageField(null=True, blank=True)
+    type = models.CharField(max_length=2, choices=ITEM_TYPE,default='PH')
 
     def __str__(self):
         return self.name
+
+    @property
+    def image_url(self):
+        try:
+            url = self.thumbnail.url
+        except:
+            url = ''
+        return url
 
 class Order(models.Model):
     customer = models.ForeignKey(Customer,on_delete=models.SET_NULL, blank=True, null=True)

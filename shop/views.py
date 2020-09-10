@@ -1,10 +1,13 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth import login, authenticate
 from .forms import RegisterForm
+from .models import *
 
 # Create your views here.
 def home(request):
-    return render(request, "shop/shop.html")
+    items = Item.objects.all()
+    data = {'items' : items}
+    return render(request, "shop/shop.html", data)
 
 def register(request):
     
