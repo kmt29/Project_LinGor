@@ -5,7 +5,9 @@ LinGor | Shop
 {% endblock title %}
 
 {% block style %}
-
+.columns{
+    padding:2%;
+}
 {% endblock style %}
 
 {% block body %}
@@ -31,7 +33,7 @@ LinGor | Shop
                                 <div class="card-body">
                                     <h5 class="card-title">{{item.name}}</h5>
                                     <p class="card-text">{{item.price}}$</p>
-                                    <a href="#" class="btn btn-primary">Add To Cart</a>
+                                    <button data-product="{{item.id}}" data-action = "add" class = "btn btn-primary cart">Add To Cart</button> 
                                 </div>
                         </div>
                     {% endif %}
@@ -49,7 +51,7 @@ LinGor | Shop
                                 <div class="card-body">
                                     <h5 class="card-title">{{item.name}}</h5>
                                     <p class="card-text">{{item.price}}$</p>
-                                    <a href="#" class="btn btn-primary">Add To Cart</a>
+                                    <button data-product="{{item.id}}" data-action = "add" class = "btn btn-primary cart">Add To Cart</button> 
                                 </div>
                         </div>
                     {% endif %}
@@ -67,7 +69,7 @@ LinGor | Shop
                                 <div class="card-body">
                                     <h5 class="card-title">{{item.name}}</h5>
                                     <p class="card-text">{{item.price}}$</p>
-                                    <a href="#" class="btn btn-primary">Add To Cart</a>
+                                    <button data-product="{{item.id}}" data-action = "add" class = "btn btn-primary cart">Add To Cart</button> 
                                 </div>
                         </div>
                     {% endif %}
