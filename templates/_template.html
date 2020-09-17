@@ -10,9 +10,7 @@
                 .navbar-brand{
                     color:black;
                 }
-                .navbar-brand:hover{
-                    color:rgb(13,13,13);
-                }
+
                 .navbar-nav{
                     font-family: 'Montserrat', sans-serif;
                 }
@@ -46,6 +44,10 @@
 
                 // Extra large devices (large desktops, 1200px and up)
                 @media (min-width: 1200px) { ... }
+                .page-footer{
+                    background-color:rgb(30,30,30);
+                    color:white;
+                }
             {% block style %}
             {% endblock style %} 
         </style>
@@ -65,7 +67,7 @@
                 <a class="nav-link" href="/about">About</a>
             </div>
             </div>
-            <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+            <div class="navbar-collapse">
                 <ul class="navbar-nav ml-auto">
                     {% if user.is_authenticated %}
                         <li class="nav-item dropdown">
@@ -73,7 +75,7 @@
                                 Hi ! {{user}}
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="/shop/profile">Profile</a>
+                               
                                 <a class="dropdown-item" href="/shop/cart">Cart</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="/shop/logout">Logout</a>
@@ -95,9 +97,91 @@
         <script src="/static/js/jquery.js"></script>
         <script src="/static/js/popper.js"></script>
         <script src="/static/js/bootstrap.js"></script>
-        <script src="/static/js/cart.js"></script>
 
-            </div>
+        <!-- Footer -->
+<footer class="page-footer font-small blue pt-4">
+
+  <!-- Footer Links -->
+  <div class="container-fluid text-center text-md-left">
+
+    <!-- Grid row -->
+    <div class="row">
+
+      <!-- Grid column -->
+      <div class="col-md-6 mt-md-0 mt-3">
+
+        <!-- Content -->
+        <h5 class="text-uppercase">Footer Content</h5>
+        <p>Here you can use rows and columns to organize your footer content.</p>
+
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none pb-3">
+
+      <!-- Grid column -->
+      <div class="col-md-3 mb-md-0 mb-3">
+
+        <!-- Links -->
+        <h5 class="text-uppercase">Links</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!">Link 1</a>
+          </li>
+          <li>
+            <a href="#!">Link 2</a>
+          </li>
+          <li>
+            <a href="#!">Link 3</a>
+          </li>
+          <li>
+            <a href="#!">Link 4</a>
+          </li>
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-3 mb-md-0 mb-3">
+
+        <!-- Links -->
+        <h5 class="text-uppercase">Links</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!">Link 1</a>
+          </li>
+          <li>
+            <a href="#!">Link 2</a>
+          </li>
+          <li>
+            <a href="#!">Link 3</a>
+          </li>
+          <li>
+            <a href="#!">Link 4</a>
+          </li>
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links -->
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a href="#"> lingor.com</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+            
         <script>
             var user = "{{user}}"
              function getToken(name) {
@@ -106,7 +190,7 @@
                     const cookies = document.cookie.split(';');
                     for (let i = 0; i < cookies.length; i++) {
                         const cookie = cookies[i].trim();
-                        // Does this cookie string begin with the name we want?
+                        //CSRF TOKEN
                         if (cookie.substring(0, name.length + 1) === (name + '=')) {
                             cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
                             break;
@@ -117,7 +201,9 @@
             }
             const csrftoken = getToken('csrftoken');   
         </script>
+                <script src="/static/js/cart.js"></script>
         {% block scripts %}
         {% endblock scripts %}
+        </div>
     </body>
 </html>

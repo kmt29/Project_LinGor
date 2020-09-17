@@ -16,11 +16,11 @@ class Item(models.Model):
     ITEM_TYPE = [
         ('PH','Phone'),
         ('TB','Tablet'),
-        ('LT','Laptop')
+        ('LT','Laptop'),
     ]
     name =models.CharField(max_length=200,null=True)
     price = models.FloatField()
-    description = models.CharField(max_length=1200)
+    description = models.TextField(null=True)
     thumbnail = models.ImageField(null=True, blank=True)
     type = models.CharField(max_length=2, choices=ITEM_TYPE,default='PH')
 
@@ -39,16 +39,25 @@ class Order(models.Model):
     customer = models.ForeignKey(Customer,on_delete=models.SET_NULL, blank=True, null=True)
     date = models.DateTimeField(default=datetime.now)
     complete = models.BooleanField(default=False,null=True,blank=False)
-    transaction_id=models.CharField(max_length=200,null=True)
 
     def __str__(self):
         return str(self.id)
+    @property
+    def total_order_price(self):
+        orderitems = self.orderitem_set.all()
+        total = sum(item.total_item_price for item in orderitems)
+        return total
 
 class OrderItem(models.Model):
     item = models.ForeignKey(Item, on_delete=models.SET_NULL, null=True)
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
     quantity = models.IntegerField(default=0, null=True, blank=True)
     date = models.DateTimeField(default=datetime.now)
+
+    @property
+    def total_item_price(self):
+        total = self.item.price * self.quantity
+        return total
 
 class ShippingAddress(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL,blank=True,null=True)

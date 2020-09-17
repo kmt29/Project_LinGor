@@ -1,12 +1,19 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth import login, authenticate
-from .forms import RegisterForm
+from .forms import *
 from .models import *
 import json
 from django.http import HttpResponse, JsonResponse
+from django.contrib import messages
 
 # Create your views here.
 def home(request):
+    if request.user.is_authenticated:
+        user = request.user
+        name = user.username
+        email = user.email
+        customer, created = Customer.objects.get_or_create(user=user, name=name, email=email)
+        customer.save()
     items = Item.objects.all()
     data = {'items' : items}
     return render(request, "shop/shop.html", data)
@@ -19,7 +26,7 @@ def register(request):
             User = form.save()
             return redirect('/shop/login')
         else:
-            return redirect('/shop/login')
+            return redirect('/shop/signup')
     else:
         form = RegisterForm()
         
@@ -34,7 +41,9 @@ def cart(request):
     else:
         items = []
 
-    data = {'items' : items}
+    form = BillingForm()
+    data = {'items' : items,'order':order, 'form':form}
+    print(data)
     return render(request, "shop/cart.html",data)
 
 def updateItem(request):
@@ -50,11 +59,38 @@ def updateItem(request):
     if action == 'add':
         orderItem.quantity = orderItem.quantity + 1
     if action == 'remove':
-        orderItem.quantity = orderItem.quantity + 1
+        orderItem.quantity = orderItem.quantity - 1
 
     orderItem.save()
 
     if orderItem.quantity <= 0:
         orderItem.delete()
     
-    return JsonResponse("items been added to cart",safe=False)
+    return JsonResponse(f"items been {action}",safe=False)
+
+def checkout(request):
+    if request.method == 'POST':
+        form = BillingForm(request.POST)
+        address = form.data['address']
+        state = form.data['state']
+        city = form.data['city']
+        zipcode = form.data['zipcode']
+        customer = request.user.customer
+        order = Order.objects.get(customer=customer,complete=False)
+        item = order.orderitem_set.all()
+
+        if form.is_valid() and item != None:
+            shipping_address = ShippingAddress.objects.create(
+                customer = customer,
+                order = order,
+                address = address,
+                city = city,
+                state = state,
+                zipcode = zipcode
+            )
+            shipping_address.save()
+            order.complete=True
+            order.save()
+            messages.success(request, "Transaction Completed")
+
+    return redirect("/shop/cart")
