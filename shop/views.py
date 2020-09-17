@@ -18,6 +18,7 @@ def home(request):
     data = {'items' : items}
     return render(request, "shop/shop.html", data)
 
+
 def register(request):
     
     if request.method == "POST":
