@@ -10,8 +10,8 @@ function updateUserOrder(id,action){
         },
         body:JSON.stringify({'id':id,'action':action})
     })
-    .then((response)=>{ location.reload();return response.json()})
-    .then((data)=>{console.log(data); window.location.replace("/shop/cart");})
+    .then((response)=>{ return response.json()})
+    .then((data)=>{console.log(data);location.reload();})
 
 }
 for (var i = 0; i<btns.length; i++){
@@ -23,9 +23,8 @@ for (var i = 0; i<btns.length; i++){
          }
          else{
              updateUserOrder(this.dataset.product,this.dataset.action);
-             console.log("btn pressed");
+             
          }
-         window.location.replace("/shop/cart");
     });
 }
 
