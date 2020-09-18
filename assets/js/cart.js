@@ -11,7 +11,7 @@ function updateUserOrder(id,action){
         body:JSON.stringify({'id':id,'action':action})
     })
     .then((response)=>{ return response.json()})
-    .then((data)=>{console.log(data);location.reload();})
+    .then((data)=>{console.log(data);window.location.replace("/shop/cart");})
 
 }
 for (var i = 0; i<btns.length; i++){
