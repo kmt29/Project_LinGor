@@ -18,6 +18,10 @@ def home(request):
     data = {'items' : items}
     return render(request, "shop/shop.html", data)
 
+def itemDetail(request, id):
+    item = Item.objects.get(id=id)
+    data = {'item': item}
+    return render(request, "shop/itemDetail.html", data)
 
 def register(request):
     

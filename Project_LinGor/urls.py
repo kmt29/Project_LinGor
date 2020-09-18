@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls import handler404, handler500
 
 
 urlpatterns = [
@@ -22,3 +23,6 @@ urlpatterns = [
     path('shop/', include("shop.urls")),
     path('', include("index.urls")),
 ]
+
+handler404 = 'index.views.page_404'
+handler500 = 'index.views.page_500'
